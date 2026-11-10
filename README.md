@@ -3,7 +3,7 @@
 A copy of the Fastest Lap board (separate repo: milhouse-fastest-lap) with its own design
 and its own Google Sheet.
 
-Live URL (after pushing): `https://wgraczewski.github.io/lock-in/`
+Live URL: `https://wgraczewski.github.io/Milhouse-Lock-In/`
 Preview with sample data: add `?demo` to the URL.
 
 ## Sheet format
