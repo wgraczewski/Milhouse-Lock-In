@@ -2,7 +2,7 @@
 // After deploying the Lock In Apps Script as a Web App, paste its URL below.
 // This is a DIFFERENT deployment from the Fastest Lap one (see README.md).
 
-var APPS_SCRIPT_URL = 'PASTE_YOUR_WEB_APP_URL_HERE';
+var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzifzVrsU-DCWy-76r7wluKdj9BxLyoSExgEL6oa8s8jUfZQTkpD-c_bi8k1R5qlW5u5A/exec';
 
 // How often (in milliseconds) the leaderboard auto-refreshes.
 var POLL_INTERVAL_MS = 2000; // 2 seconds
