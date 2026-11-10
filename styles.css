@@ -1,0 +1,266 @@
+/* ── Reset & Base ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:          #fcbae3;
+  --maroon:      #914a72;
+  --pos-bg:      #9a5f77;
+  --row-bg:      #fceeee;
+  --row-text:    #874b66;
+  --cream:       #fbf2f2;
+  --prize:       #541c4a;
+  --prize-sub:   #72325f;
+  --slab:        'Roboto Slab', Rockwell, 'Courier New', serif;
+  --helvetica:   'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--row-text);
+  font-family: var(--helvetica);
+  font-size: 16px;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Page shell ───────────────────────────────────────── */
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  padding: 0 1.5vw 1.5vw;
+}
+
+/* ── Banner ───────────────────────────────────────────── */
+.banner {
+  margin: 0 -1.5vw 2.5vw;
+  flex-shrink: 0;
+}
+
+.banner-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── Content grid: sidebar + leaderboard ──────────────── */
+.content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 22% 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "sidebar-top   leaderboard"
+    "prize-list    leaderboard";
+  column-gap: 2.8vw;
+  row-gap: 1.5vw;
+  min-height: 0;
+}
+
+.sidebar-top {
+  grid-area: sidebar-top;
+}
+
+.header-logos {
+  margin-bottom: 1.4vw;
+}
+
+.logos {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+}
+
+/* ── Live status badge ────────────────────────────────── */
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6vw;
+  padding-left: 0.6vw;
+  font-size: clamp(0.7rem, 1.1vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--row-text);
+  text-transform: uppercase;
+}
+
+.live-dot {
+  width: 0.8vw;
+  height: 0.8vw;
+  min-width: 8px;
+  min-height: 8px;
+  border-radius: 50%;
+  background: var(--row-text);
+  flex-shrink: 0;
+  animation: pulse 1.4s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ── Prize list ───────────────────────────────────────── */
+.prize-list {
+  grid-area: prize-list;
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+  padding-left: 0.3vw;
+}
+
+.prize-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2vw;
+}
+
+.prize-place {
+  font-size: clamp(0.85rem, 1.15vw, 1.4rem);
+  font-weight: 500;
+  color: var(--prize);
+}
+
+.prize-name {
+  font-size: clamp(0.65rem, 0.8vw, 1rem);
+  color: var(--prize-sub);
+  letter-spacing: -0.02em;
+}
+
+/* ── Leaderboard ──────────────────────────────────────── */
+.leaderboard-panel {
+  grid-area: leaderboard;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Column layout shared by header + rows */
+.leaderboard-header,
+.leaderboard-row {
+  display: flex;
+  align-items: center;
+}
+
+.cell-pos   { width: 9.3%; flex-shrink: 0; }
+.cell-name  { flex: 1; min-width: 0; padding-left: 2.4%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cell-score { width: 14%; flex-shrink: 0; text-align: right; }
+.cell-acc   { width: 21%; flex-shrink: 0; text-align: right; padding-right: 3.8%; }
+
+/* Header bar */
+.leaderboard-header {
+  flex-shrink: 0;
+  height: 4.2vw;
+  min-height: 34px;
+  margin-bottom: 0.8vw;
+  background: var(--maroon);
+  color: var(--cream);
+  font-family: var(--slab);
+  font-weight: 800;
+  font-size: clamp(0.9rem, 1.8vw, 2.2rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.leaderboard-header .cell-pos   { text-align: center; }
+.leaderboard-header .cell-score { padding-right: 0; }
+.leaderboard-header .cell-acc   { padding-right: 2%; }
+
+.leaderboard-list {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6vw;
+}
+
+.leaderboard-row {
+  flex: 1;
+  min-height: 0;
+  max-height: 5.5vw;
+  background: var(--row-bg);
+  font-family: var(--slab);
+  font-weight: 800;
+  color: var(--row-text);
+}
+
+.leaderboard-row.is-entering {
+  animation: rowSlideIn 0.3s ease;
+}
+
+@keyframes rowSlideIn {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Position tab — slanted maroon block */
+.leaderboard-row .cell-pos {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pos-bg);
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+  margin-right: -1%;
+}
+
+.pos-number {
+  font-size: clamp(1.4rem, 3vw, 3.6rem);
+  font-weight: 800;
+  color: var(--cream);
+  font-variant-numeric: tabular-nums;
+}
+
+.leaderboard-row .cell-name,
+.leaderboard-row .cell-score,
+.leaderboard-row .cell-acc {
+  font-size: clamp(1.2rem, 2.9vw, 3.5rem);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Empty / loading state */
+.leaderboard-empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--row-bg);
+  color: var(--row-text);
+  font-family: var(--slab);
+  font-weight: 800;
+  font-size: clamp(1rem, 1.6vw, 1.8rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── Responsive tweaks ────────────────────────────────── */
+@media (max-width: 860px) {
+  .page { height: auto; min-height: 100vh; padding: 0 16px 16px; }
+  .banner { margin: 0 -16px 16px; }
+
+  .content {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "sidebar-top"
+      "leaderboard"
+      "prize-list";
+    row-gap: 20px;
+  }
+
+  .logos { max-width: 220px; }
+  .leaderboard-panel { min-height: 60vh; }
+  .leaderboard-list { gap: 5px; }
+  .leaderboard-row { max-height: none; min-height: 40px; }
+  .prize-list { align-self: start; }
+
+  .leaderboard-header { font-size: 0.8rem; margin-bottom: 6px; }
+  .cell-acc { width: 26%; }
+  .cell-score { width: 18%; }
+  .pos-number { font-size: 1.2rem; }
+  .leaderboard-row .cell-name,
+  .leaderboard-row .cell-score,
+  .leaderboard-row .cell-acc { font-size: 1rem; }
+}

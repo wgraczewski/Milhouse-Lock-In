@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#fcbae3" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>The Lock In — Milhouse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700;800;900&display=swap" />
+  <link rel="stylesheet" href="styles.css?v=1" />
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- ── Banner ───────────────────────────────────────── -->
+    <div class="banner">
+      <img src="assets/banner-lock-in.png" alt="The Lock In — Shooting Range" class="banner-img" />
+    </div>
+
+    <div class="content">
+
+      <!-- ── Sidebar: logos/status + prizes ───────────────── -->
+      <div class="sidebar-top">
+        <div class="header-logos">
+          <img src="assets/logos.png" class="logos" alt="Milhouse | elgato" />
+        </div>
+        <div class="live-badge">
+          <span class="live-dot"></span>
+          Qualifying &nbsp;Live until 9 PM
+        </div>
+      </div>
+
+      <div class="prize-list" id="prize-list"></div>
+
+      <!-- ── Leaderboard ──────────────────────────────────── -->
+      <div class="leaderboard-panel" role="table" aria-label="Shooting range leaderboard">
+        <div class="leaderboard-header" role="row">
+          <span class="cell-pos" role="columnheader">#</span>
+          <span class="cell-name" role="columnheader">Player</span>
+          <span class="cell-score" role="columnheader">Score</span>
+          <span class="cell-acc" role="columnheader">Accuracy</span>
+        </div>
+        <div class="leaderboard-list" id="lb-tbody">
+          <div class="leaderboard-empty">Loading...</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts: config first, then app -->
+  <script src="config.js?v=1"></script>
+  <script src="app.js?v=1"></script>
+
+</body>
+</html>
